@@ -54,7 +54,7 @@ function RouteCallback() {
     if (apiError) {
       console.error("OAuth error: ", error_description);
       navigate({
-        to: "/",
+        to: "/login",
         search: { error: apiError },
       });
       return;
@@ -63,7 +63,7 @@ function RouteCallback() {
     const savedState = localStorage.getItem("oauth_state");
     if (state !== savedState) {
       navigate({
-        to: "/",
+        to: "/login",
         search: { error: "invalid_state" },
       });
       return;
@@ -72,7 +72,7 @@ function RouteCallback() {
     const codeVerifier = localStorage.getItem("code_verifier");
     if (!code || !codeVerifier) {
       navigate({
-        to: "/",
+        to: "/login",
         search: { error: "missing_params" },
       });
       return;
@@ -118,7 +118,7 @@ function RouteCallback() {
             <Button
               variant="outline"
               className="w-full"
-              onClick={() => navigate({ to: "/" })}
+              onClick={() => navigate({ to: "/login" })}
             >
               Voltar para o Login
             </Button>

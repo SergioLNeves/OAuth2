@@ -1,7 +1,7 @@
 import { useAuth } from "@/hooks/use-auth";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/dashboard/")({
+export const Route = createFileRoute("/_authenticated/dashboard")({
   component: RouteDashboard,
 });
 
@@ -11,7 +11,7 @@ function RouteDashboard() {
 
   function handleLogout() {
     logout();
-    navigate({ to: "/" });
+    navigate({ to: "/login" });
   }
 
   return (

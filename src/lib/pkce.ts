@@ -1,6 +1,7 @@
 // Converte array para base64url
-function base64UrlEncode(buffer: ArrayBuffer) {
-  const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+function base64UrlEncode(buffer: ArrayBuffer | Uint8Array) {
+  const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
+  const base64 = btoa(String.fromCharCode(...bytes));
   return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
