@@ -1,0 +1,22 @@
+FROM node:22-alpine
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Ativa o corepack
+RUN corepack enable
+
+# Copia apenas arquivos necessários para instalar deps
+COPY package.json pnpm-lock.yaml ./
+
+# Instala dependências com cache mais eficiente
+RUN pnpm install --frozen-lockfile
+
+# Copia o restante do código
+COPY . .
+
+# Expor porta do Vite
+EXPOSE 3000
+
+# Rodar o Vite em modo dev
+CMD ["pnpm", "dev", "--host"]

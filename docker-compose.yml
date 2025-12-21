@@ -1,0 +1,38 @@
+services:
+  backend:
+    build:
+      context: ./back
+      dockerfile: .docker/dockerfile.dev
+    container_name: oauth-backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./back:/app
+      - /app/tmp
+    env_file:
+      - ./back/.env
+    networks:
+      - oauth-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./front
+      dockerfile: .docker/dockerfile.dev
+    container_name: oauth-frontend
+    ports:
+      - "5173:3000"
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+    env_file:
+      - ./front/.env
+    networks:
+      - oauth-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+networks:
+  oauth-network:
+    driver: bridge

@@ -1,0 +1,19 @@
+FROM golang:1.25-alpine
+
+WORKDIR /app
+
+# Instala o Air (fixando versão é recomendado)
+RUN go install github.com/air-verse/air@v1.63.4
+
+# Copia apenas os arquivos de dependência
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copia o restante do código
+COPY . .
+
+# Expor porta da aplicação
+EXPOSE 8080
+
+# Rodar com hot reload
+CMD ["air", "-c", ".air.toml"]
