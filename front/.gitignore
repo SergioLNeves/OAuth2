@@ -9,3 +9,6 @@ count.txt
 .tanstack
 .wrangler
 pnpm-lock.yaml
+
+# Cursor AI rules
+.cursorrules
