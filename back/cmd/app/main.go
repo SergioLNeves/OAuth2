@@ -15,8 +15,7 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORS())
-
-	_ = validator.GetValidator()
+	e.Validator = validator.NewValidator()
 
 	container := dependecies.ProvideDependencies()
 	err := container.Invoke(func(r *router.Router) {
