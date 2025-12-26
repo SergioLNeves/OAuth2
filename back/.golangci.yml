@@ -1,0 +1,54 @@
+run:
+  timeout: 5m
+  go: '1.25'
+  
+linters-settings:
+  gofmt:
+    simplify: true
+  goimports:
+    local-prefixes: github.com/SergioLNeves/OAuth2/back
+  govet:
+    enable-all: true
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - style
+      - performance
+  revive:
+    rules:
+      - name: var-naming
+      - name: package-comments
+      - name: exported
+      - name: error-return
+      - name: error-strings
+      - name: receiver-naming
+      - name: increment-decrement
+      - name: error-naming
+      - name: context-as-argument
+      - name: dot-imports
+
+linters:
+  enable:
+    - gofmt
+    - goimports
+    - govet
+    - errcheck
+    - staticcheck
+    - unused
+    - gosimple
+    - ineffassign
+    - typecheck
+    - revive
+    - gocritic
+    - misspell
+    - unconvert
+    - unparam
+    - whitespace
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
