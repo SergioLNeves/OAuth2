@@ -3,9 +3,8 @@ package dependecies
 import (
 	"log"
 
-	"github.com/SergioLNeves/OAuth2/back/internal/handler"
-	"github.com/SergioLNeves/OAuth2/back/internal/router"
-	"github.com/SergioLNeves/OAuth2/back/internal/services"
+	"github.com/SergioLNeves/OAuth2/back/internal/adapters/http"
+	"github.com/SergioLNeves/OAuth2/back/internal/core/services"
 	"go.uber.org/dig"
 )
 
@@ -16,11 +15,11 @@ func ProvideDependencies() *dig.Container {
 		log.Fatalf("failed to provide health check service: %v", err)
 	}
 
-	if err := container.Provide(handler.NewHealthCheckHandler); err != nil {
+	if err := container.Provide(http.NewHealthCheckHandler); err != nil {
 		log.Fatalf("failed to provide health check handler: %v", err)
 	}
 
-	if err := container.Provide(router.NewRouter); err != nil {
+	if err := container.Provide(http.NewRouter); err != nil {
 		log.Fatalf("failed to provide router: %v", err)
 	}
 

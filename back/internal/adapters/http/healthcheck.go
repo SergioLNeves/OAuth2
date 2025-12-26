@@ -1,18 +1,18 @@
-package handler
+package http
 
 import (
 	"fmt"
 	"net/http"
 
-	"github.com/SergioLNeves/OAuth2/back/internal/domain"
+	"github.com/SergioLNeves/OAuth2/back/internal/core/ports"
 	"github.com/labstack/echo/v4"
 )
 
 type HealthCheckHandlerImpl struct {
-	healthCheckService domain.HealthCheckerService
+	healthCheckService ports.HealthCheckerService
 }
 
-func NewHealthCheckHandler(healthCheckService domain.HealthCheckerService) (domain.HealthCheckHandler, error) {
+func NewHealthCheckHandler(healthCheckService ports.HealthCheckerService) (ports.HealthCheckHandler, error) {
 	if healthCheckService == nil {
 		return nil, fmt.Errorf("Failed to initialize health check service dependency")
 	}

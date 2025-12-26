@@ -1,12 +1,12 @@
-package domain
+package ports
 
 import (
-	"github.com/SergioLNeves/OAuth2/back/internal/model"
+	"github.com/SergioLNeves/OAuth2/back/internal/core/domain"
 	"github.com/labstack/echo/v4"
 )
 
 type HealthCheckerService interface {
-	Check() (model.HealthCheck, []error)
+	Check() (domain.HealthCheck, []error)
 }
 
 type HealthCheckHandler interface {

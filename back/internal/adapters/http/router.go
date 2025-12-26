@@ -1,15 +1,15 @@
-package router
+package http
 
 import (
-	"github.com/SergioLNeves/OAuth2/back/internal/domain"
+	"github.com/SergioLNeves/OAuth2/back/internal/core/ports"
 	"github.com/labstack/echo/v4"
 )
 
 type Router struct {
-	healthCheckHandler domain.HealthCheckHandler
+	healthCheckHandler ports.HealthCheckHandler
 }
 
-func NewRouter(healthCheckHandler domain.HealthCheckHandler) *Router {
+func NewRouter(healthCheckHandler ports.HealthCheckHandler) *Router {
 	return &Router{
 		healthCheckHandler: healthCheckHandler,
 	}
