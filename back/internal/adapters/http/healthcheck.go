@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/SergioLNeves/OAuth2/back/internal/core/ports"
 	"github.com/labstack/echo/v4"
+
+	"github.com/SergioLNeves/OAuth2/back/internal/core/ports"
 )
 
 type HealthCheckHandlerImpl struct {
@@ -22,10 +23,12 @@ func NewHealthCheckHandler(healthCheckService ports.HealthCheckerService) (ports
 }
 
 func (h HealthCheckHandlerImpl) Check(ctx echo.Context) error {
-	check, err := h.healthCheckService.Check()
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, err)
+	check, errs := h.healthCheckService.Check()
+
+	statusCode := http.StatusOK
+	if len(errs) > 0 {
+		statusCode = http.StatusServiceUnavailable
 	}
 
-	return ctx.JSON(http.StatusOK, check.Status)
+	return ctx.JSON(statusCode, check)
 }

@@ -1,8 +1,9 @@
 package ports
 
 import (
-	"github.com/SergioLNeves/OAuth2/back/internal/core/domain"
 	"github.com/labstack/echo/v4"
+
+	"github.com/SergioLNeves/OAuth2/back/internal/core/domain"
 )
 
 type HealthCheckerService interface {

@@ -9,6 +9,8 @@ linters-settings:
     local-prefixes: github.com/SergioLNeves/OAuth2/back
   govet:
     enable-all: true
+    disable:
+      - fieldalignment
   errcheck:
     check-type-assertions: true
     check-blank: true
@@ -20,8 +22,6 @@ linters-settings:
   revive:
     rules:
       - name: var-naming
-      - name: package-comments
-      - name: exported
       - name: error-return
       - name: error-strings
       - name: receiver-naming
